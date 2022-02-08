@@ -67,7 +67,7 @@
                         <h3><?php echo $tag['label'] ?></h3>
                         <p><?php echo $tag['id'] ?></p>
                         <nav>
-                            <a href="tags.php?tag_id=321">Messages</a>
+                            <a href="tags.php?tag_id=['id']">Messages</a>
                         </nav>
                     </article>
                 <?php } ?>
@@ -100,11 +100,11 @@
                         <h3><?php echo $tag['alias'] ?></h3>
                         <p><?php echo $tag['id'] ?></p>
                         <nav>
-                            <a href="wall.php?user_id=$tag['id']">Mur</a>
-                            | <a href="feed.php?user_id=$tag['id']">Flux</a>
-                            | <a href="settings.php?user_id=$tag['id']">Paramètres</a>
-                            | <a href="followers.php?user_id=$tag['id']">Suiveurs</a>
-                            | <a href="subscriptions.php?user_id=$tag['id']">Abonnements</a>
+                            <a href="wall.php?user_id=['id']">Mur</a>
+                            <a href="feed.php?user_id=['id']">Flux</a>
+                            <a href="settings.php?user_id=['id']">Paramètres</a>
+                            <a href="followers.php?user_id=['id']">Suiveurs</a>
+                            <a href="subscriptions.php?user_id=['id']">Abonnements</a>
                         </nav>
                     </article>
                 <?php } ?>
