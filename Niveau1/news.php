@@ -123,13 +123,13 @@
                         <h3>
                             <time><?php echo $post['created'] ?></time>
                         </h3>
-                        <address>A REMPLACER</address>
+                        <address><?php echo $post['author_name'] ?></address>
                         <div>
-                            <p>A REMPLACER</p>
+                            <p><?php echo $post['content'] ?></p>
                         </div>
                         <footer>
-                            <small>♥ A REMPLACER</small>
-                            <a href="">A REMPLACER</a>,
+                            <small>♥ <?php echo $post['like_number'] ?></small>
+                            <a href=""><?php echo $post['taglist'] ?></a>,
                         </footer>
                     </article>
                     <?php
