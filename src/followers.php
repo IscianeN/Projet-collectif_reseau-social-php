@@ -58,7 +58,7 @@
                 ?>
                 <article>
                     <img src="user.jpg" alt="blason"/>
-                    <p><a href="wall.php?user_id=<?php echo $user['id']?>"><?php echo $user['alias'] ?></p>
+                    <p><a href="wall.php?user_id=<?php echo $user['id']?>"><?php echo $user['alias'] ?></a></p>
                     <p>id: <?php echo $user['id'] ?></p>                    
                 </article>
                 <?php } ?>
