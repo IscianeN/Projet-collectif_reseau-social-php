@@ -37,6 +37,8 @@
              * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
              */
             $userId =intval($_GET['user_id']);
+
+          
             ?>
             <?php
             /**
@@ -50,24 +52,26 @@
                 /**
                  * Etape 3: récupérer le nom de l'utilisateur
                  */                
-                $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
+                $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId'";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
+            
                 
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 // echo "<pre>" . print_r($user, 5) . "</pre>";
     
                 ?>
+               
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
+                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias']?>
                         (n° <?php echo $userId ?>)
                     </p>
                 </section>
             </aside>
             <main>
-            <form action="wall.php" method="post">
+            <form action="wall.php?user_id=<?php echo $userId ?> " method="post">
                         <!-- <input type='hidden' name='???' value='achanger'> -->
                         <dl>
                             <dt><label for='auteur'>Auteur</label></dt>
@@ -82,6 +86,36 @@
                         <input type='submit'>
                     </form> 
                 <?php
+
+                $enCoursDeTraitement = isset($_POST['message']);
+
+                if ($enCoursDeTraitement){
+
+        
+                $authorId = $userId ;
+                $postContent = $_POST['message'];
+                $authorId = intval($mysqli->real_escape_string($authorId));
+                $postContent = $mysqli->real_escape_string($postContent);
+                 $lInstructionSql = "INSERT INTO posts "
+                 . "(id, user_id, content, created, parent_id) "
+                 . "VALUES (NULL, "
+                 . $authorId . ", "
+                 . "'" . $postContent . "', "
+                 . "NOW(), "
+                 /* . "'', " */
+                 . "NULL);"
+                 ;
+                // echo $lInstructionSql;
+                $ok = $mysqli->query($lInstructionSql);
+                if ( ! $ok)
+                {
+                    echo "Impossible d'ajouter le message: " . $mysqli->error;
+                } else
+                {
+                    echo "Message posté";
+                }
+                }
+
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
@@ -102,7 +136,7 @@
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                 }
-
+        
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
