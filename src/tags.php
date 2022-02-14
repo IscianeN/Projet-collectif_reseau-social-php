@@ -40,7 +40,7 @@
             /**
              * Etape 2: se connecter à la base de donnée
              */
-            $mysqli = new mysqli("localhost", "root", "", "socialnetwork");
+            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork", 8889);
             ?>
 
             <aside>
@@ -72,7 +72,8 @@
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
-                    users.alias as author_name,  
+                    users.alias as author_name,
+                    users.id as author_id,  
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts_tags as filter 
@@ -97,13 +98,13 @@
                 while ($post = $lesInformations->fetch_assoc())
                 {
 
-                    echo "<pre>" . print_r($post, 1) . "</pre>";
+                    /* echo "<pre>" . print_r($post, 1) . "</pre>"; */
                     ?>                
                     <article>
                         <h3>
                         <time><?php echo $post['created'] ?></time>
                         </h3>
-                        <address><?php echo $post['author_name'] ?></address>
+                        <address><a href="wall.php?user_id=<?php echo $post['author_id']?>"><?php echo $post['author_name'] ?></a></address>
                         <div>
                             <p><?php echo $post['content'] ?></p>
                         </div>                                            

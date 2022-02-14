@@ -40,7 +40,7 @@
             /**
              * Etape 2: se connecter à la base de donnée
              */
-            $mysqli = new mysqli("localhost", "root", "", "socialnetwork");
+            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork", 8889);
             ?>
 
             <aside>
@@ -70,7 +70,7 @@
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
                 $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, 
+                    SELECT posts.content, posts.created, users.alias as author_name, users.id as author_id, 
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
@@ -99,7 +99,7 @@
                         <h3>
                         <time><?php echo $post['created']?></time>
                         </h3>
-                        <address><?php echo $post['author_name'] ?></address>
+                        <address><a href="wall.php?user_id=<?php echo $post['author_id']?>"><?php echo $post['author_name'] ?></a></address>
                         <div>
                             <!-- <p>Ceci est un paragraphe</p>
                             <p>Ceci est un autre paragraphe</p> -->
