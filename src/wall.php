@@ -25,6 +25,8 @@
 
             </nav>
         </header>
+                 
+        
         <div id="wrapper">
             <?php
             /**
@@ -40,7 +42,7 @@
             /**
              * Etape 2: se connecter à la base de donnée
              */
-            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork", 8889);
+            $mysqli = new mysqli("localhost", "root", "", "socialnetwork");
             ?>
 
             <aside>
@@ -59,12 +61,26 @@
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : Félicie
+                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
                         (n° <?php echo $userId ?>)
                     </p>
                 </section>
             </aside>
             <main>
+            <form action="wall.php" method="post">
+                        <!-- <input type='hidden' name='???' value='achanger'> -->
+                        <dl>
+                            <dt><label for='auteur'>Auteur</label></dt>
+                            <dd><p name='auteur'>
+                                    <?php
+                                    echo $userId 
+                                    ?>
+                                </p></dd>
+                            <dt><label for='message'>Message</label></dt>
+                            <dd><textarea name='message'></textarea></dd>
+                        </dl>
+                        <input type='submit'>
+                    </form> 
                 <?php
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
@@ -94,7 +110,9 @@
                 {
 
                     // echo "<pre>" . print_r($post, 1) . "</pre>";
-                    ?>                
+                    ?>   
+                     
+                 
                     <article>
                         <h3>
                         <time><?php echo $post['created']?></time>
