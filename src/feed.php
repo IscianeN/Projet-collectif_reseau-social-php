@@ -1,3 +1,8 @@
+<?php session_start(); 
+$session = $_SESSION['connected_id'];
+?>
+
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -11,8 +16,8 @@
             <img src="resoc.jpg" alt="Logo de notre réseau social"/>
             <nav id="menu">
                 <a href="news.php">Actualités</a>
-                <a href="wall.php?user_id=<?php echo $userId ?>">Mur</a>
-                <a href="feed.php?user_id=<?php echo $userId ?>">Flux</a>
+                <a href="wall.php?user_id=<?php echo $session ?>">Mur</a>
+                <a href="feed.php?user_id=<?php echo $session ?>">Flux</a>
                 <a href="tags.php?tag_id=<?php echo $tagId ?>">Mots-clés</a>
             </nav>
             <nav id="user">
@@ -41,7 +46,7 @@
             /**
              * Etape 2: se connecter à la base de donnée
              */
-            $mysqli = new mysqli("localhost", "root", "", "socialnetwork");
+            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork", 8889);
             ?>
 
             <aside>

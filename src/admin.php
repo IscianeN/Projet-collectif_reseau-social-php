@@ -31,7 +31,7 @@
          * Etape 1: Ouvrir une connexion avec la base de donnée.
          */
         // on va en avoir besoin pour la suite
-        $mysqli = new mysqli("localhost", "root", "", "socialnetwork");
+        $mysqli = new mysqli("localhost", "root", "root", "socialnetwork", 8889);
         //verification
         if ($mysqli->connect_errno)
         {
@@ -100,11 +100,11 @@
                         <h3><a href="wall.php?user_id=<?php echo $tag['id'] ?>"><?php echo $tag['alias'] ?></a></h3>
                         <p><?php echo $tag['id'] ?></p>
                         <nav>
-                            <a href="wall.php?user_id=['id']">Mur</a>
-                            <a href="feed.php?user_id=['id']">Flux</a>
-                            <a href="settings.php?user_id=['id']">Paramètres</a>
-                            <a href="followers.php?user_id=['id']">Suiveurs</a>
-                            <a href="subscriptions.php?user_id=['id']">Abonnements</a>
+                            <a href="wall.php?user_id=<?php echo $userId ?>">Mur</a>
+                            <a href="feed.php?user_id=<?php echo $userId ?>">Flux</a>
+                            <a href="settings.php?user_id=<?php echo $userId ?>">Paramètres</a>
+                            <a href="followers.php?user_id=<?php echo $userId ?>">Suiveurs</a>
+                            <a href="subscriptions.php?user_id=<?php echo $userId ?>">Abonnements</a>
                         </nav>
                     </article>
                 <?php } ?>
