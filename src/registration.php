@@ -1,3 +1,7 @@
+<?php session_start(); 
+$session = $_SESSION['connected_id'];
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
