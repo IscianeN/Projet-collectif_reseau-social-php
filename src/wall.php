@@ -50,7 +50,7 @@
             </aside>
             <main>
             <form action="wall.php?user_id=<?php echo $userId ?> " method="post">
-                        <!-- <input type='hidden' name='???' value='achanger'> -->
+                        
                         <dl>
                             <dt><label for='auteur'>Auteur</label></dt>
                             <dd><p name='auteur'>
@@ -60,6 +60,8 @@
                                 </p></dd>
                             <dt><label for='message'>Message</label></dt>
                             <dd><textarea name='message'></textarea></dd>
+                            <dt><label for='tag'>Add a tag</label></dt>
+                            <dd><input type='text' name='tag' value='add a tag'></dd>
                         </dl>
                         <input type='submit'>
                     </form> 
@@ -68,12 +70,13 @@
                 $enCoursDeTraitement = isset($_POST['message']);
 
                 if ($enCoursDeTraitement){
-
         
                 $authorId = $userId ;
                 $postContent = $_POST['message'];
+                
                 $authorId = intval($mysqli->real_escape_string($authorId));
                 $postContent = $mysqli->real_escape_string($postContent);
+               
                  $lInstructionSql = "INSERT INTO posts "
                  . "(id, user_id, content, created, parent_id) "
                  . "VALUES (NULL, "
@@ -83,6 +86,9 @@
                  /* . "'', " */
                  . "NULL);"
                  ;
+
+              
+                 
                 // echo $lInstructionSql;
                 $ok = $mysqli->query($lInstructionSql);
                 if ( ! $ok)
@@ -92,8 +98,27 @@
                 {
                     echo "Message posté";
                 }
-                }
+                
+             
+            }
 
+            $tagProcessing = isset($_POST['tag']);
+            if ($tagProcessing){
+                $tagContent = $_POST['tag'];
+                $tagContent = $mysqli->real_escape_string($tagContent);
+                $tagInsert = "INSERT INTO tags "
+             . "(id, label) "
+             . "VALUES (NULL, "
+             . "'" . $tagContent . "', "
+             ;
+
+             $tagOK = $mysqli->query($tagProcessing);
+             if (! $tagOK){
+                 echo "Impossible d'ajouter le tag: " . $mysqli->error;
+             } else {
+                 echo "Tag posté";
+             }
+            }
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
