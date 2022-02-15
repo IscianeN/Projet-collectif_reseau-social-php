@@ -104,24 +104,29 @@
 
             $tagProcessing = isset($_POST['tag']);
             if ($tagProcessing){
+                $tagId=$_POST['tag'];
                 $tagContent = $_POST['tag'];
+                $tagId = intval($mysqli->real_escape_string($tagId));
                 $tagContent = $mysqli->real_escape_string($tagContent);
-                $tagInsert = "INSERT INTO tags "
-             . "(id, label) "
-             . "VALUES (NULL, "
-             . "'" . $tagContent . "', "
-             ;
-
+                $tagInsert =   "INSERT INTO tags "
+                . "(id, label) "
+                . "VALUES (NULL, "
+                . $tagContent . ")"
+            ;
+          
+            
+            
              $tagOK = $mysqli->query($tagProcessing);
              if (! $tagOK){
                  echo "Impossible d'ajouter le tag: " . $mysqli->error;
              } else {
                  echo "Tag posté";
              }
+
             }
-                /**
-                 * Etape 3: récupérer tous les messages de l'utilisatrice
-                 */
+                
+                //  * Etape 3: récupérer tous les messages de l'utilisatrice
+                 
                 $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, users.id as author_id, 
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist, GROUP_CONCAT(DISTINCT tags.id) AS taglistid 
