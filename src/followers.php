@@ -1,3 +1,7 @@
+<?php session_start(); 
+$session = $_SESSION['connected_id'];
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -18,9 +22,9 @@
             <nav id="user">
                 <a href="#">Profil</a>
                 <ul>
-                    <li><a href="settings.php?user_id=<?php echo $userId ?>">Paramètres</a></li>
-                    <li><a href="followers.php?user_id=<?php echo $userId ?>">Mes suiveurs</a></li>
-                    <li><a href="subscriptions.php?user_id=<?php echo $userId ?>">Mes abonnements</a></li>
+                    <li><a href="settings.php?user_id=<?php echo $session ?>">Paramètres</a></li>
+                    <li><a href="followers.php?user_id=<?php echo $session ?>">Mes suiveurs</a></li>
+                    <li><a href="subscriptions.php?user_id=<?php echo $session ?>">Mes abonnements</a></li>
                 </ul>
 
             </nav>

@@ -22,9 +22,9 @@ $session = $_SESSION['connected_id'];
             <nav id="user">
                 <a href="#">Profil</a>
                 <ul>
-                    <li><a href="settings.php?user_id=<?php echo $userId ?>">Paramètres</a></li>
-                    <li><a href="followers.php?user_id=<?php echo $userId ?>">Mes suiveurs</a></li>
-                    <li><a href="subscriptions.php?user_id=<?php echo $userId ?>">Mes abonnements</a></li>
+                    <li><a href="settings.php?user_id=<?php echo $session ?>">Paramètres</a></li>
+                    <li><a href="followers.php?user_id=<?php echo $session ?>">Mes suiveurs</a></li>
+                    <li><a href="subscriptions.php?user_id=<?php echo $session ?>">Mes abonnements</a></li>
                 </ul>
 
             </nav>
@@ -81,7 +81,7 @@ $session = $_SESSION['connected_id'];
                             <dt><label for='auteur'>Auteur</label></dt>
                             <dd><p name='auteur'>
                                     <?php
-                                    echo $userId 
+                                    echo $user['alias']
                                     ?>
                                 </p></dd>
                             <dt><label for='message'>Message</label></dt>
