@@ -8,7 +8,7 @@
     </head>
     <body>
         <header>
-            <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a>
+            <a href='admin.php'><img src="logo.jpg" alt="Logo de notre réseau social"/></a>
             <nav id="menu">
                 <a href="news.php">Actualités</a>
                 <a href="wall.php?user_id=<?php echo $userId ?>">Mur</a>
@@ -48,7 +48,7 @@
                  */
 
                 // Etape 1: Ouvrir une connexion avec la base de donnée.
-                $mysqli = new mysqli("localhost", "root", "root", "socialnetwork", 8889);
+                $mysqli = new mysqli("localhost", "root", "", "socialnetwork" );
                 //verification
                 if ($mysqli->connect_errno)
                 {
