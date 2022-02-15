@@ -104,18 +104,25 @@
 
             $tagProcessing = isset($_POST['tag']);
             if ($tagProcessing){
-                $tagId=$_POST['tag'];
+                //$tagId=$_POST['tag'];
                 $tagContent = $_POST['tag'];
-                $tagId = intval($mysqli->real_escape_string($tagId));
+                //$tagId = intval($mysqli->real_escape_string($tagId));
                 $tagContent = $mysqli->real_escape_string($tagContent);
+               /*  echo $tagContent; */
                 $tagInsert =   "INSERT INTO tags "
                 . "(id, label) "
                 . "VALUES (NULL, "
-                . $tagContent . ")"
+                . "'" . $tagContent . "');"
             ;
           
-            
-            
+           /*  $tagInsert = "INSERT INTO tags "
+                 . "(id, label) "
+                 . "VALUES (NULL, "
+                 . $tagContent . "); "
+                 ;
+            */
+              
+
              $tagOK = $mysqli->query($tagProcessing);
              if (! $tagOK){
                  echo "Impossible d'ajouter le tag: " . $mysqli->error;
