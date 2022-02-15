@@ -17,7 +17,7 @@ $session = $_SESSION['connected_id'];
                 <a href="news.php">Actualités</a>
                 <a href="wall.php?user_id=<?php echo $session ?>">Mur</a>
                 <a href="feed.php?user_id=<?php echo $session ?>">Flux</a>
-                <a href="tags.php?tag_id=<?php echo $tagId ?>">Mots-clés</a>
+                <a href="tags.php">Mots-clés</a>
             </nav>
             <nav id="user">
                 <a href="#">Profil</a>
@@ -163,7 +163,7 @@ $session = $_SESSION['connected_id'];
                         </div>                                            
                         <footer>
                             <small><?php echo $post["like_number"] ?></small>
-                            <a href="">#<?php echo $post['taglist'] ?></a>
+                            <a href="tags.php?tag_id=<?php echo $tag['tag_id']?>">#<?php echo $post['taglist'] ?></a>
                         </footer>
                     </article>
                 <?php } ?>

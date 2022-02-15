@@ -1,4 +1,6 @@
-
+<?php session_start(); 
+$session = $_SESSION['connected_id'];
+?>
 
 <!doctype html>
 <html lang="fr">
@@ -60,7 +62,7 @@
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les derniers messages comportant
-                        le mot-clé #politique
+                        le mot-clé #<?php echo $tag['label']?>
                         (n° <?php echo $tagId ?>)
                     </p>
 

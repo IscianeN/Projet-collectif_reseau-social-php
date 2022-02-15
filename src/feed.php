@@ -114,7 +114,7 @@ $session = $_SESSION['connected_id'];
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <a href="">#<?php echo $post['taglist'] ?></a>,
+                            <a href="tags.php?tag_id=<?php echo $tag['id']?>">#<?php echo $post['taglist'] ?></a>,
                         </footer>
                     </article>
                 <?php } ?> 
