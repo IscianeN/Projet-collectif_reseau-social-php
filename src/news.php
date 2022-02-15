@@ -42,21 +42,20 @@
                 // cette requete vous est donnée, elle est complexe mais correcte, 
                 // si vous ne la comprenez pas c'est normal, passez, on y reviendra
                 $laQuestionEnSql = "
-                    SELECT posts.content,
-                    posts.created,
-                    users.alias as author_name,
-                    users.id as author_id,  
-                    count(likes.id) as like_number,  
-                    GROUP_CONCAT(DISTINCT tags.label) AS taglist 
-                    FROM posts
-                    JOIN users ON  users.id=posts.user_id
-                    LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
-                    LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
-                    LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    GROUP BY posts.id
-                    ORDER BY posts.created DESC  
-                    LIMIT 5
-                    ";
+                SELECT posts.content, posts.created, 
+                users.alias as author_name, 
+                users.id as user_id,
+                COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist,
+                GROUP_CONCAT(DISTINCT tags.id) AS taglistid
+                FROM posts
+                JOIN users ON  users.id=posts.user_id
+                LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
+                LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
+                LEFT JOIN likes      ON likes.post_id  = posts.id 
+                
+                GROUP BY posts.id
+                ORDER BY posts.created DESC  
+            ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Vérification
                 if ( ! $lesInformations)
@@ -85,13 +84,13 @@
                         <h3>
                             <time><?php echo $post['created'] ?></time>
                         </h3>
-                        <address><a href="wall.php?user_id=<?php echo $post['author_id']?>"><?php echo $post['author_name'] ?></a></address>
+                        <address><a href="wall.php?user_id=<?php echo $post['user_id']?>"><?php echo $post['author_name'] ?></a></address>
                         <div>
                             <p><?php echo $post['content'] ?></p>
                         </div>
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <a href=""><?php echo $post['taglist'] ?></a>,
+                            <a href="tags.php?tag_id=<?php echo $post['taglistid']?>">#<?php echo $post['taglist'] ?></a>,
                         </footer>
                     </article>
                     <?php
