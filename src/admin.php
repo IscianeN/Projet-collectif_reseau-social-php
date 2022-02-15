@@ -1,8 +1,9 @@
-<?php session_start(); 
-$session = $_SESSION['connected_id'];
-?>
+<?php 
 
-<!doctype html>
+    session_start(); 
+    include './navrefactoring.html' ?>
+
+<!-- <!doctype html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
@@ -28,7 +29,7 @@ $session = $_SESSION['connected_id'];
                 </ul>
 
             </nav>
-        </header>
+        </header> -->
 
         <?php
         /**

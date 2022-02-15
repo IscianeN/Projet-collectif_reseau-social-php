@@ -1,34 +1,9 @@
-<?php session_start(); 
-$session = $_SESSION['connected_id'];
+<?php 
+    session_start(); 
+    include './navrefactoring.html'
 ?>
 
-<!doctype html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>ReSoC - Inscription</title> 
-        <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
-    </head>
-    <body>
-        <header>
-            <img src="logo.jpg" alt="Logo de notre réseau social"/>
-            <nav id="menu">
-                <a href="news.php">Actualités</a>
-                <a href="wall.php?user_id=<?php echo $userId ?>">Mur</a>
-                <a href="feed.php?user_id=<?php echo $userId ?>">Flux</a>
-                <a href="tags.php?tag_id=<?php echo $tagId ?>">Mots-clés</a>
-            </nav>
-            <nav id="user">
-                <a href="#">Profil</a>
-                <ul>
-                    <li><a href="settings.php?user_id=<?php echo $userId ?>">Paramètres</a></li>
-                    <li><a href="followers.php?user_id=<?php echo $userId ?>">Mes suiveurs</a></li>
-                    <li><a href="subscriptions.php?user_id=<?php echo $userId ?>">Mes abonnements</a></li>
-                </ul>
 
-            </nav>
-        </header>
 
         <div id="wrapper" >
 
@@ -59,10 +34,7 @@ $session = $_SESSION['connected_id'];
 
 
                         //Etape 3 : Ouvrir une connexion avec la base de donnée.
-<<<<<<< HEAD
                         $mysqli = new mysqli("localhost", "root", "root","socialnetwork");
-=======
->>>>>>> acde99a763ff756a66696d9263e887ad7079dfbc
                         //Etape 4 : Petite sécurité
                         // pour éviter les injection sql : https://www.w3schools.com/sql/sql_injection.asp
                         $new_email = $mysqli->real_escape_string($new_email);
