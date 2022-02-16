@@ -10,7 +10,7 @@ $session = $_SESSION['connected_id'];
         <meta name="author" content="Julien Falconnet">
         <link rel="stylesheet" href="style.css"/>
     </head>
-    <body>
+    <body> 
         <header>
             <img src="logo.jpg" alt="Logo de notre réseau social"/>
             <nav id="menu">
@@ -33,7 +33,7 @@ $session = $_SESSION['connected_id'];
 
 
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="nft.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les informations de l'utilisatrice
@@ -55,7 +55,7 @@ $session = $_SESSION['connected_id'];
                 /**
                  * Etape 2: se connecter à la base de donnée
                  */
-                $mysqli = new mysqli("localhost", "root", "", "socialnetwork");
+                $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
 
                 /**
                  * Etape 3: récupérer le nom de l'utilisateur

@@ -1,17 +1,20 @@
-body{
-    background-color: rgb(236, 173, 176);
-    font-family: Arial;
+ 
+ body{
+     background-color:rgb(236, 162, 162); 
+    font-family: Arial,sans-serif;
+    color:rgb(0, 0, 0)
 }
 
-a{text-decoration: none; color:black;}
+a{text-decoration: none; color: rgb(0, 0, 0);}
 a:hover{text-decoration: underline;}
 
 body>header{
-    background-color: #fff;
+    background-color:  rgb(241, 99, 130);
     display:flex;
     width:80em;
     margin:0 auto 2em auto;    
     padding:0;
+    
 
 }
 body>header img{
@@ -21,24 +24,26 @@ body>header #menu {
     display:flex;
     width:50%;
     align-items: stretch;
-    border-left: 1px solid #99b;
+    border-left: 1px solid rgb(0, 0, 0);
 }
 body>header #menu a{
     flex:1;
     text-align: center;
     padding-top:2em;
-    border-right: 1px solid #99b;
+    border-right: 1px solid rgb(197, 96, 96);
 }
 body>header a:hover
 {
-    background-color: #99b;
+    background-color: rgb(197, 96, 96);
 }
 body>header ul{list-style: none;}
 body>header #user
 {
     margin-left: auto;
     flex:0.2;
-    border-left: 1px solid #99b;
+    border-left: 1px solid rgb(197, 96, 96) ;
+   
+    
 }
 body>header #user>a{
     display:block;
@@ -52,8 +57,8 @@ body>header #user ul{
     padding:0;
     margin:0;
     margin-left:-5em;
-    background-color: #fff;
-    border: 1px solid #99b;
+    background-color: rgb(245, 47, 90);
+    border: 1px solid rgb(245, 47, 90);
 
     z-index: 1;
 }
@@ -61,7 +66,7 @@ body>header #user ul li a{
     display:block;
     width:10em;
     padding:1em;
-    border-bottom: 1px solid #99b;
+    border-bottom: 1px solid rgb(226, 145, 145);
 }
 body>header #user:hover ul{
     display:block;
@@ -74,7 +79,7 @@ body>header #user:hover ul{
     margin:0 auto 2em auto;
 }
 #wrapper aside{
-    background-color: #fff;
+    background-color: rgb(226, 145, 145);
     flex:1;
     padding:1em;
     border-radius: 1em;    
@@ -92,7 +97,7 @@ body>header #user:hover ul{
     overflow-y:  scroll;
 }
 #wrapper main article{
-    background-color: #fff;
+    background-color: rgb(226, 145, 145);
     padding:1em;
     margin-bottom: 1em ;
     border-radius: 1em;
@@ -124,11 +129,11 @@ body>header #user:hover ul{
 
 #wrapper.admin{flex-direction: row-reverse}
 #wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
-#wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;}
+#wrapper.admin main{flex:2;background-color: rgb(197, 96, 96);border-radius: 0;padding:0;}
 #wrapper.admin h2{text-align: center;}
 #wrapper.admin h3{margin:0;}
 #wrapper.admin nav{text-align: right;}
-#wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;}
+#wrapper.admin article{border:1px solid rgb(226, 145, 145);border-radius: 1em;padding:1em;margin:1em;}
 #wrapper.admin article p{float:left;margin:0;}
 
 
@@ -150,11 +155,14 @@ body>header #user:hover ul{
     float:right;
     height: 5em;
 }
+.contacts textarea{
+    background-color: rgb(0, 0, 0);
+}
 
 pre{
-    color:#aaa;
+    color:rgb(0, 0, 0);
 }
 
 form dl dt{float:left;font-weight: bold;line-height: 1.5em;}
 form dl dd{margin-left:10em;line-height: 1.5em;margin-bottom: 1em}
-form dl dd textarea{width:40em;height: 15em;}
+form dl dd textarea{width:40em;height: 15em; border-color: black;}

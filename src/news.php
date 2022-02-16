@@ -1,4 +1,5 @@
-<?php session_start(); 
+<?php
+ session_start(); 
 $session = $_SESSION['connected_id'];
 ?>
 
@@ -10,7 +11,7 @@ $session = $_SESSION['connected_id'];
         <meta name="author" content="Julien Falconnet">
         <link rel="stylesheet" href="style.css"/>
     </head>
-    <body>
+    <body >
         <header>
             <a href='admin.php'><img src="logo.jpg" alt="Logo de notre réseau social"/></a>
             <nav id="menu">
@@ -30,7 +31,7 @@ $session = $_SESSION['connected_id'];
         </header>
         <div id="wrapper">
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="nft.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les derniers messages de
@@ -52,7 +53,7 @@ $session = $_SESSION['connected_id'];
                  */
 
                 // Etape 1: Ouvrir une connexion avec la base de donnée.
-                $mysqli = new mysqli("localhost", "root", "", "socialnetwork" );
+                $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
                 //verification
                 if ($mysqli->connect_errno)
                 {

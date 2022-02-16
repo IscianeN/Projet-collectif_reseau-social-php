@@ -48,7 +48,7 @@ $session = $_SESSION['connected_id'];
             /**
              * Etape 2: se connecter à la base de donnée
              */
-            $mysqli = new mysqli("localhost", "root", "", "socialnetwork");
+            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
             ?>
 
             <aside>
@@ -66,7 +66,7 @@ $session = $_SESSION['connected_id'];
     
                 ?>
                
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="nft.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias']?>
