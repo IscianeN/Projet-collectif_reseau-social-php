@@ -1,37 +1,11 @@
-<?php
- session_start(); 
-$session = $_SESSION['connected_id'];
+<?php 
+    session_start(); 
+    include './navrefactoring.php'
 ?>
 
-<!doctype html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>ReSoC - Actualités</title> 
-        <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
-    </head>
-    <body >
-        <header>
-            <a href='admin.php'><img src="logo.jpg" alt="Logo de notre réseau social"/></a>
-            <nav id="menu">
-                <a href="news.php">Actualités</a>
-                <a href="wall.php?user_id=<?php echo $session ?>">Mur</a>
-                <a href="feed.php?user_id=<?php echo $session ?>">Flux</a>
-                <a href="tags.php?tag_id=<?php echo $tagId ?>">Mots-clés</a>
-            </nav>
-            <nav id="user">
-                <a href="#">▾ Profil</a>
-                <ul>
-                    <li><a href="settings.php?user_id=<?php echo $session ?>">Paramètres</a></li>
-                    <li><a href="followers.php?user_id=<?php echo $session ?>">Mes suiveurs</a></li>
-                    <li><a href="subscriptions.php?user_id=<?php echo $session ?>">Mes abonnements</a></li>
-                </ul>
-            </nav>
-        </header>
         <div id="wrapper">
             <aside>
-                <img src="nft.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les derniers messages de
@@ -53,7 +27,7 @@ $session = $_SESSION['connected_id'];
                  */
 
                 // Etape 1: Ouvrir une connexion avec la base de donnée.
-                $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+                $mysqli = new mysqli("localhost", "root", "root", "socialnetwork" );
                 //verification
                 if ($mysqli->connect_errno)
                 {
@@ -68,21 +42,20 @@ $session = $_SESSION['connected_id'];
                 // cette requete vous est donnée, elle est complexe mais correcte, 
                 // si vous ne la comprenez pas c'est normal, passez, on y reviendra
                 $laQuestionEnSql = "
-                    SELECT posts.content,
-                    posts.created,
-                    users.alias as author_name,
-                    users.id as author_id,  
-                    count(likes.id) as like_number,  
-                    GROUP_CONCAT(DISTINCT tags.label) AS taglist 
-                    FROM posts
-                    JOIN users ON  users.id=posts.user_id
-                    LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
-                    LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
-                    LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    GROUP BY posts.id
-                    ORDER BY posts.created DESC  
-                    LIMIT 5
-                    ";
+                SELECT posts.content, posts.created, 
+                users.alias as author_name, 
+                users.id as user_id,
+                COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist,
+                GROUP_CONCAT(DISTINCT tags.id) AS taglistid
+                FROM posts
+                JOIN users ON  users.id=posts.user_id
+                LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
+                LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
+                LEFT JOIN likes      ON likes.post_id  = posts.id 
+                
+                GROUP BY posts.id
+                ORDER BY posts.created DESC  
+            ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Vérification
                 if ( ! $lesInformations)
@@ -111,13 +84,13 @@ $session = $_SESSION['connected_id'];
                         <h3>
                             <time><?php echo $post['created'] ?></time>
                         </h3>
-                        <address><a href="wall.php?user_id=<?php echo $post['author_id']?>"><?php echo $post['author_name'] ?></a></address>
+                        <address><a href="wall.php?user_id=<?php echo $post['user_id']?>"><?php echo $post['author_name'] ?></a></address>
                         <div>
                             <p><?php echo $post['content'] ?></p>
                         </div>
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <a href=""><?php echo $post['taglist'] ?></a>,
+                            <a href="tags.php?tag_id=<?php echo $post['taglistid']?>">#<?php echo $post['taglist'] ?></a>,
                         </footer>
                     </article>
                     <?php
