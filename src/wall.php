@@ -102,6 +102,8 @@
              
             }
 
+         
+
             $tagProcessing = isset($_POST['tag']);
             if ($tagProcessing){
                 //$tagId=$_POST['tag'];
@@ -132,6 +134,33 @@
 
             }
                 
+                 //requête pour récupérer id_post 
+
+            //   $postId =intval($_GET['tag_id']);
+              $getTable = "
+              SELECT posts.id as post_id FROM posts; 
+              SELECT tags.id as tag_id FROM tags;";
+
+
+            //   $tagPostProcessing = isset($getTable);
+            
+               $insertPostId = "INSERT INTO posts_tags "
+               . "(id,post_id,tag_id) "
+               . "VALUES(NULL, "
+               . "post_id, "
+               . "tag_id);";
+            
+            
+            //   $idPost = $mysqli->query($getTable);
+            //   $message = $idPost->fetch_assoc();
+      
+              $insertPostTag = $mysqli->query($insertPostId);
+              if ( ! $insertPostTag)
+              {
+                  echo("Échec de la requete : " . $mysqli->error);
+              }
+      
+
                 //  * Etape 3: récupérer tous les messages de l'utilisatrice
                  
                 $laQuestionEnSql = "

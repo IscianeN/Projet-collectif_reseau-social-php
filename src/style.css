@@ -11,6 +11,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.avatar {
+  border-radius: 20px;
+}
+
 #body > #header {
   background-color: rgb(223, 128, 128);
   display: flex;
@@ -20,6 +24,7 @@ a:hover {
 }
 body > header img {
   height: 5em;
+  
 }
 body > header #menu {
   display: flex;
