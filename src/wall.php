@@ -114,6 +114,7 @@
                 . "VALUES (NULL, "
                 . "'" . $tagContent . "');"
             ;
+            /* echo $tagInsert; */
           
            /*  $tagInsert = "INSERT INTO tags "
                  . "(id, label) "
@@ -123,7 +124,7 @@
             */
               
 
-             $tagOK = $mysqli->query($tagProcessing);
+             $tagOK = $mysqli->query($tagInsert);
              if (! $tagOK){
                  echo "Impossible d'ajouter le tag: " . $mysqli->error;
              } else {
