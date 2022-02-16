@@ -123,7 +123,7 @@
             */
               
 
-             $tagOK = $mysqli->query($tagProcessing);
+             $tagOK = $mysqli->query($tagInsert);
              if (! $tagOK){
                  echo "Impossible d'ajouter le tag: " . $mysqli->error;
              } else {
