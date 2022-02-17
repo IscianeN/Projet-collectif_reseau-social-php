@@ -5,38 +5,26 @@
 
         <div id="wrapper">
             <?php
-            /**
-             * Cette page est similaire à wall.php ou feed.php 
-             * mais elle porte sur les mots-clés (tags)
-             */
-            /**
-             * Etape 1: Le mur concerne un mot-clé en particulier
-             */
+
             $tagId = intval($_GET['tag_id']);
             ?>
             <?php
-            /**
-             * Etape 2: se connecter à la base de donnée
-             */
+
             $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
             ?>
 
             <aside>
                 <?php
-                /**
-                 * Etape 3: récupérer le nom du mot-clé
-                 */
-                $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $tag = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
-                // echo "<pre>" . print_r($tag, 1) . "</pre>";
+      
+                $getTags = "SELECT * FROM tags WHERE id= '$tagId' ";
+                $tagsResult = $mysqli->query($getTags);
+                $tag = $tagsResult->fetch_assoc();
+       
                 ?>
-                <img src="nft.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="nft.jpg" alt="User profile image"/>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les derniers messages comportant
-                        le mot-clé #<?php echo $tag['label']?>
+                    <h3>Introduction</h3>
+                    <p>On this page you can access all posts with dedicated #<?php echo $tag['label']?>
                         (n° <?php echo $tagId ?>)
                     </p>
 
@@ -44,10 +32,8 @@
             </aside>
             <main>
                 <?php
-                /**
-                 * Etape 3: récupérer tous les messages avec un mot clé donné
-                 */
-                $laQuestionEnSql = "
+            
+                $getPosts = "
                     SELECT posts.content,
                     posts.created,
                     users.alias as author_name,
@@ -64,16 +50,14 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
+                $postsResult = $mysqli->query($getPosts);
+                if ( ! $postsResult)
                 {
-                    echo("Échec de la requete : " . $mysqli->error);
+                    echo("Cannot do the query: " . $mysqli->error);
                 }
 
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 */
-                while ($post = $lesInformations->fetch_assoc())
+              
+                while ($post = $postsResult->fetch_assoc())
                 {
 
                     /* echo "<pre>" . print_r($post, 1) . "</pre>"; */

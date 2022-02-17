@@ -7,37 +7,36 @@
             <aside>
                 <img src="nft.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez la liste des personnes dont
-                        l'utilisatrice
+                    <h3>Introduction</h3>
+                    <p>You can find the list of all users, including you. 
                         n° <?php echo intval($_GET['user_id']) ?>
-                        suit les messages
+                        follow the messages
                     </p>
 
                 </section>
             </aside>
             <main class='contacts'>
                 <?php
-                // Etape 1: récupérer l'id de l'utilisateur
+
                 $userId = intval($_GET['user_id']);
-                // Etape 2: se connecter à la base de donnée
+
                 $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
-                // Etape 3: récupérer le nom de l'utilisateur
-                $laQuestionEnSql = "
+
+                $getUsers = "
                     SELECT users.* 
                     FROM followers 
                     LEFT JOIN users ON users.id=followers.followed_user_id 
                     WHERE followers.following_user_id='$userId'
                     GROUP BY users.id
                     ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
+                $usersResult = $mysqli->query($getUsers);
                 // Etape 4: à vous de jouer
                 //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
-                while ($post = $lesInformations->fetch_assoc())
+                while ($post = $usersResult->fetch_assoc())
                 {
                 ?>
                 <article>
-                    <img src="user.jpg" alt="blason"/>
+                    <img src="nft.jpg" alt="blason"/>
                     <h3><a href="wall.php?user_id=<?php echo $post['id']?>"><?php echo $post['alias']?></a></h3>
                     <p>id:<?php echo $post['id']?></p>                    
                 </article>

@@ -5,39 +5,26 @@
 
         <div id="wrapper">
             <?php
-            /**
-             * Cette page est TRES similaire à wall.php. 
-             * Vous avez sensiblement à y faire la meme chose.
-             * Il y a un seul point qui change c'est la requete sql.
-             */
-            /**
-             * Etape 1: Le mur concerne un utilisateur en particulier
-             */
             $userId = intval($_GET['user_id']);
             ?>
+
             <?php
-            /**
-             * Etape 2: se connecter à la base de donnée
-             */
+           
             $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
             ?>
 
             <aside>
                 <?php
-                /**
-                 * Etape 3: récupérer le nom de l'utilisateur
-                 */
-                $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $user = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                // echo "<pre>" . print_r($user, 1) . "</pre>";
+               
+                $getUsers = "SELECT * FROM `users` WHERE id= '$userId' ";
+                $usersResult = $mysqli->query($getUsers);
+                $user = $usersResult->fetch_assoc();
+            
                 ?>
-                <img class = "avatar" src="nft.jpg" alt="Portrait de l'utilisatrice"/>
+                <img class = "avatar" src="nft.jpg" alt="User profile image"/>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice
+                    <h3>Introduction</h3>
+                    <p>You can find all users' messages that you follow.
                         <?php echo $user['alias'] ?> (n° <?php echo $userId ?>)
                     </p>
 
@@ -45,10 +32,8 @@
             </aside>
             <main>
                 <?php
-                /**
-                 * Etape 3: récupérer tous les messages des abonnements
-                 */
-                $laQuestionEnSql = "
+                
+                $postQuery = "
                     SELECT posts.content,
                     posts.created,
                     users.alias as author_name,  
@@ -64,17 +49,13 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
+                $queryResult = $mysqli->query($postQuery);
+                if ( ! $queryResult)
                 {
-                    echo("Échec de la requete : " . $mysqli->error);
+                    echo("Cannot do the query: " . $mysqli->error);
                 }
 
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 * A vous de retrouver comment faire la boucle while de parcours...
-                 */
-                while ($post = $lesInformations->fetch_assoc())
+                while ($post = $queryResult->fetch_assoc())
                 {
                 ?>   
                     <article>
@@ -87,12 +68,11 @@
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <a href="tags.php?tag_id=<?php echo $post['tags.id']?>">#<?php echo $post['taglist'] ?></a>,
+                            <a href="tags.php?tag_id=<?php echo $post['tags.id']?>">#<?php echo $post['taglist'] ?></a>, 
                         </footer>
                     </article>
                 <?php } ?> 
-                
-
+            
 
             </main>
         </div>

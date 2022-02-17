@@ -2,9 +2,6 @@
     session_start(); 
     include './navrefactoring.php'
 ?>
-
-                 
-        
         <div id="wrapper">
             <?php
 
@@ -119,47 +116,6 @@
                  }
             
             }
-
-         
-        /*     $tagProcessing = isset($_POST['tag']);
-            if ($tagProcessing){
-
-                $tagContent = $_POST['tag'];
-             
-                $tagContent = $mysqli->real_escape_string($tagContent);
-  
-                $tagInsert =   "INSERT INTO tags "
-                . "(id, label) "
-                . "VALUES (NULL, "
-                . "'" . $tagContent . "');"
-            ;
-          
-             $tagOK = $mysqli->query($tagInsert);
-             if (! $tagOK){
-                 echo "Impossible d'ajouter le tag: " . $mysqli->error;
-             } else {
-                 echo "Tag posté";
-             }
-            } */
-                
-                 //requête pour récupérer id_post 
-
-        /*       $getPostId = "SELECT posts.id as post_id FROM posts WHERE posts.content = '$ok'; "; 
-              $getTagId = "SELECT tags.id as tag_id FROM tags WHERE tags.label = '$tagOK' ;";
-              
-            
-                $insertTagPostId = "INSERT INTO posts_tags "
-               . "(id,post_id,tag_id) "
-               . "VALUES(NULL, "
-               . "post_id, "
-               . "tag_id);";
-
-               $tagPostOK = $mysqli->query($insertTagPostId);
-               if (! $insertTagPostId){
-                   echo "Impossible d'ajouter le tag: " . $mysqli->error;
-               } else {
-                   echo "Tag posté";
-               } */
                  
                 $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, users.id as author_id, 
