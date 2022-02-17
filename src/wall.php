@@ -87,6 +87,16 @@
                  . "NULL);"
                  ;
 
+                 $getPostId = "
+                 SELECT $postContent, posts.id as post_id FROM posts; 
+                 SELECT tags.id as tag_id FROM tags";
+
+                 $insertPostId = "INSERT INTO posts_tags "
+                 . "(id, post_id, tag_id) "
+                 . "VALUES (NULL, "
+                 . "post_id, "
+                 . "tag_id);";
+            
               
                  
                 // echo $lInstructionSql;
