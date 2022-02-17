@@ -26,8 +26,8 @@
                
                 <img src="nft.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias']?>
+                    <h3>Introduction</h3>
+                    <p>You can find all messages from the user on this page: <?php echo $user['alias']?>
                         (n° <?php echo $userId ?>)
                     </p>
                 </section>
@@ -36,7 +36,7 @@
             <form action="wall.php?user_id=<?php echo $userId ?> " method="post">
                         
                         <dl>
-                            <dt><label for='auteur'>Auteur</label></dt>
+                            <dt><label for='auteur'>Author</label></dt>
                             <dd><p name='auteur'>
                                     <?php
                                     echo $user['alias']
@@ -78,19 +78,19 @@
                  ;
 
                 $ok = $mysqli->query($lInstructionSql);
-                if ( ! $ok)
+              /*   if ( ! $ok)
                 {
                     echo "Impossible d'ajouter le message: " . $mysqli->error;
                 } else
                 {
                     echo "Message posté";
-                }
+                } */
                 $tagOK = $mysqli->query($tagInsert);
-                if (! $tagOK){
+               /*  if (! $tagOK){
                     echo "Impossible d'ajouter le tag: " . $mysqli->error;
                 } else {
                     echo "Tag posté";
-                }
+                } */
 
                 $getPostId = "SELECT posts.id as post_id FROM posts WHERE posts.content = '$postContent'; "; 
                 $getTagId = "SELECT tags.id as tag_id FROM tags WHERE tags.label = '$tagContent' ;";
@@ -109,11 +109,11 @@
                  . $tagResult['tag_id'] . "); ";
   
                  $tagPostOK = $mysqli->query($insertTagPostId);
-                 if (! $tagPostOK){
+              /*    if (! $tagPostOK){
                      echo "Impossible d'ajouter dans la table: " . $mysqli->error;
                  } else {
                      echo "Réussi";
-                 }
+                 } */
             
             }
                  
